@@ -1,3 +1,4 @@
+import { validParameter } from '../contracts/parameters.js';
 import { newId } from '../contracts/id.js';
 import { emptyPatch, MAX_MODULES } from '../contracts/patch.js';
 import { definition } from '../modules/registry.js';
@@ -28,7 +29,7 @@ export class RackStore {
   parameter(id, key, value) {
     const instance = this.patch.modules.find(module => module.id === id);
     const spec = definition(instance.type).parameters[key];
-    if (!spec || !Number.isFinite(value)) throw new Error('Invalid parameter.');
+    if (!spec || !validParameter(spec, value)) throw new Error('Invalid parameter.');
     instance.parameters[key] = Math.max(spec.min, Math.min(spec.max, value));
     this.emit('parameter');
   }

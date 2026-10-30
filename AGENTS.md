@@ -1,9 +1,9 @@
 # Working agreement
 
 - Develop and test every feature on a branch. Do not merge into main or deploy production without the user's explicit approval.
-- Netlify is the intended host. Connect it later; do not substitute another production host.
+- Netlify is connected. main is production; PRs get Deploy Previews. Do not substitute another production host.
 - Keep hand-written source files below 500 lines; aim for 100–300. Split by responsibility, not arbitrary line counts.
-- Keep each module in its own folder. Modules depend on contracts, never on another module or UI code.
+- Keep each module in its own folder. Module DSP depends on contracts, never on another module or UI code. Module panel files may use shared UI controls; keep them out of the DSP registry.
 - Engine and processors must run without the browser UI. Platform adapters own browser APIs.
 - No logging, I/O, or avoidable allocation in the audio render loop. Musical timing uses samples, not UI timers.
 - Validate patches at the boundary. Maintain stable module/port/parameter IDs and version the patch schema.

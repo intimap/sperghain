@@ -9,7 +9,7 @@ export function compileGraph(patch, sampleRate, capacity = 2048, previous = new 
     nodes.set(instance.id, {
       id: instance.id, type: instance.type, parameters: { ...instance.parameters },
       processor: prior?.type === instance.type ? prior.processor : new (registry.get(instance.type).Processor)(sampleRate, instance.parameters),
-      inputs: Object.fromEntries(spec.ports.filter(p => p.direction === 'input').map(p => [p.id, new Float32Array(capacity)])),
+      inputs: Object.fromEntries(spec.ports.filter(p => p.direction === 'input').map(p => [p.id, new Float32Array(capacity).fill(p.default ?? 0)])),
       outputs: Object.fromEntries(spec.ports.filter(p => p.direction === 'output').map(p => [p.id, new Float32Array(capacity)]))
     });
   }

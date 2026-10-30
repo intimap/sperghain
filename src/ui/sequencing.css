@@ -1,0 +1,26 @@
+/* Sequencer and transport panels share the rack's fixed height. */
+.module.violet { --accent: #d4b6ff; border-color: #8a779b; background: linear-gradient(90deg,#332e3e,#443b50,#332e3e); }
+.library-card.violet .library-symbol { color: #d4b6ff; }
+.compact-control { display: flex; flex-direction: column; gap: 5px; font-size: 9px; color: #cbd6cb; }
+.compact-control input, .compact-control select { border: 1px solid #768370; border-radius: 0; background: #18211b; color: var(--accent); padding: 6px; font: inherit; font-size: 13px; min-width: 0; width: 100%; }
+.clock-controls { margin-top: 18px; }
+.clock-controls .compact-control input { font-size: 28px; text-align: center; }
+.transport-display { margin: 12px 0; padding: 9px 4px; background: #142019; color: var(--accent); font-size: 10px; text-align: center; }
+.transport-buttons { display: flex; gap: 7px; }
+.transport-buttons button { padding: 8px; font-size: 11px; flex: 1; }
+.module-hint { font-size: 9px; line-height: 1.5; color: #b1c3b6; white-space: pre-line; margin-top: 14px; }
+.sequencer-controls { margin-top: 14px; }
+.sequence-settings { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.sequence-steps { display: grid; grid-template-columns: repeat(8,1fr); gap: 5px; margin-top: 17px; }
+.sequence-step { padding: 6px 3px; border: 1px solid #6c6277; background: #211c2b; min-width: 0; }
+.sequence-step button { width: 100%; padding: 8px 0; font-size: 12px; background: #373041; }
+.sequence-step button[aria-pressed=true] { background: #ac92c8; color: #20152c; }
+.sequence-step .compact-control { margin-top: 10px; }
+.sequence-step .compact-control span { font-size: 0; }
+.sequence-step .compact-control span::after { content: 'SEMI'; font-size: 7px; letter-spacing: 1px; }
+.sequence-step input { font-size: 11px; padding: 5px 1px; text-align: center; }
+.sequence-step.playing { border-color: #e3ccff; box-shadow: 0 0 0 2px #e3ccff; background: #584465; }
+.sequence-step.outside-loop { opacity: .35; }
+.sequence-status { margin-top: 13px; color: #dbbef9; font-size: 9px; letter-spacing: 1px; }
+.socket.gate { border-color: #d3b7ee; }
+.library-note.error { color: #f2ae7d; }

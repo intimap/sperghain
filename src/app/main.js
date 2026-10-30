@@ -1,3 +1,4 @@
+import { paintTelemetry } from '../rack/telemetry.js';
 import { RackStore } from '../rack/store.js';
 import { mountRack } from '../rack/view.js';
 import { mountBrowser } from '../ui/module-browser.js';
@@ -12,7 +13,7 @@ const audio = new BrowserAudio(state => {
   document.querySelector('#audio-state').classList.toggle('active', running);
   audioButton.textContent = running ? 'Pause audio' : 'Enable audio ↗';
   if (state === 'error') report('The audio engine stopped. Reload the page to restart it.');
-});
+}, paintTelemetry);
 store.subscribe((patch, kind) => audio.sync(patch, kind));
 mountRack(store, report); mountBrowser(store, report); mountPatchFiles(store, report);
 audioButton.onclick = async () => {

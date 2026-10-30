@@ -29,13 +29,16 @@ Multiple oscillators may be instantiated. Patch one oscillator to another's 1V/O
 ## Branch and release workflow
 
 All implementation lives on feature branches until user approval. Do not merge or deploy production without approval.
-The repository started empty: the initial feature branch is the only branch until an approved main baseline exists.
-Once Netlify is connected, use `main` as production and feature branches for previews. A PR preview needs an existing base branch. Netlify configuration is included; no deployment has been made.
+Netlify uses `main` for production and PR Deploy Previews for review. main currently contains only contributor rules until the first approved merge. Feature branches must not be used as the production branch. The previously published foundation remains live; new work stays in previews.
 
 ## Current boundaries
 
-32 modules maximum; sine oscillator and output only. No MIDI, sequencer, filter, polyphony, drag placement, undo, autosave, external modules or native plugin yet. Reorder with arrows. The dial is a visual indicator controlled by its slider. Graph edits may click; parameter changes and master gain are smoothed. Graph compilation allocates on the worklet message handler, so large live edits are not yet guaranteed glitch-free.
+32 modules maximum; oscillator, output, master clock and eight-step sequencer. No MIDI, filter, polyphony, drag placement, undo, autosave, external modules or native plugin yet. Reorder with arrows. The dial is a visual indicator controlled by its slider. Graph edits may click; parameter changes and master gain are smoothed. Graph compilation allocates on the worklet message handler, so large live edits are not yet guaranteed glitch-free.
 
 Architecture: [docs/architecture.md](docs/architecture.md). Contributor rules: [AGENTS.md](AGENTS.md).
 
 Review: [verification notes](docs/verification.md) and [rack screenshot](docs/foundation-preview.jpg).
+
+## Clock and sequencing
+
+See [clock/sequencer guide](docs/clock-sequencer.md) for wiring, timing conventions and limits. Load [the example patch](examples/clock-sequence.json), enable audio, then press Start on the clock.

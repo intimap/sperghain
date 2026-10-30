@@ -1,5 +1,5 @@
 export class BrowserAudio {
-  constructor(onState) { this.onState = onState; this.volume = 0.25; this.muted = false; }
+  constructor(onState, onTelemetry = () => {}) { this.onState = onState; this.onTelemetry = onTelemetry; this.volume = 0.25; this.muted = false; }
   async enable(patch) {
     if (!globalThis.isSecureContext) throw new Error('Audio needs HTTPS or localhost. Rack editing still works.');
     if (!this.context) {
@@ -11,6 +11,12 @@ export class BrowserAudio {
         this.gain.gain.value = this.muted ? 0 : this.volume;
         this.node.connect(this.gain).connect(context.destination);
         this.node.onprocessorerror = () => { this.gain.gain.value = 0; this.onState('error'); };
+        this.node.port.onmessage = ({ data }) => {
+          if (data.type === 'status') this.onTelemetry(data.items);
+        };
+        this.telemetryTimer = setInterval(() => {
+          if (context.state === 'running') this.node.port.postMessage({ type: 'status' });
+        }, 50);
         this.context = context;
         context.onstatechange = () => this.onState(context.state);
       } catch (error) { await context.close(); throw error; }

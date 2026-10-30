@@ -28,9 +28,9 @@ Graph compilation occurs only for structural edits. The per-block render functio
 ## Next milestones
 
 1. LFO, attenuator, mixer and scope; meter actual signals.
-2. Sample-offset MIDI event contract and MIDI-to-CV bridge; envelope, VCA and filter.
+2. Master clock and CV/gate sequencing are implemented; next: MIDI-to-CV bridge, envelope, VCA and filter.
 3. Patch migrations, undo/redo, drag/snapped rack placement and safer graph crossfades.
-4. Sequencer and effects; explicit delay-based feedback support.
+4. More sequencers and effects; explicit delay-based feedback support.
 5. Evaluate portable native/WASM DSP before a substantial module catalogue. A C++/Rust implementation could share algorithms between browser and native plugin hosts; current JS processors will need porting. Contracts, tests, assets and patch schema remain useful. No promise of a zero-rewrite Ableton plugin.
 
 ## Verification

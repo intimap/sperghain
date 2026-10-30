@@ -1,3 +1,4 @@
+import { validParameter } from '../contracts/parameters.js';
 import { definition } from '../modules/registry.js';
 import { MAX_MODULES, PATCH_VERSION } from '../contracts/patch.js';
 import { validateCables } from '../patching/graph.js';
@@ -14,7 +15,7 @@ export function validatePatch(value) {
     const parameters = {};
     for (const [id, param] of Object.entries(spec.parameters)) {
       const number = module.parameters?.[id];
-      if (!Number.isFinite(number) || number < param.min || number > param.max) throw new Error(`Invalid ${param.label} value.`);
+      if (!validParameter(param, number)) throw new Error(`Invalid ${param.label} value.`);
       parameters[id] = number;
     }
     return { id: module.id, type: spec.type, version: spec.version, parameters };

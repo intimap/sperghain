@@ -44,7 +44,9 @@ test('empty and disconnected racks are silent', () => {
 test('output fan-out works and sums destinations', () => {
   const graph = compileGraph(validatePatch(patch([osc(), out(), out('out2')], [cable(), cable('osc', 'out2', 'in', 'c2')])), 48000);
   const sink = new Float32Array(128); renderGraph(graph, sink, 128);
-  assert.ok(Math.max(...sink) > 0.99);
+  for (let i = 0; i < 50; i++) renderGraph(graph, sink, 128);
+  const signal = graph.nodes.get('osc').outputs.out;
+  for (let i = 0; i < sink.length; i++) assert.ok(Math.abs(sink[i] - signal[i] * 0.2) < 1e-6);
 });
 test('reject cycles, occupied inputs, missing endpoints and wrong port direction', () => {
   for (const value of [

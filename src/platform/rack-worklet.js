@@ -7,6 +7,13 @@ class RackProcessor extends AudioWorkletProcessor {
     this.sink = new Float32Array(2048);
     this.port.onmessage = ({ data }) => {
       if (data.type === 'patch') this.graph = compileGraph(data.patch, sampleRate, 2048, this.graph.nodes);
+      if (data.type === 'status') {
+        const items = [];
+        for (const node of this.graph.ordered) {
+          if (node.processor.status) items.push({ id: node.id, state: node.processor.status() });
+        }
+        this.port.postMessage({ type: 'status', items });
+      }
       if (data.type === 'parameters') {
         for (const instance of data.modules) {
           const node = this.graph.nodes.get(instance.id);
