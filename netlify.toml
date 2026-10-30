@@ -1,4 +1,5 @@
 [build]
+  ignore = "node ./scripts/netlify-ignore.mjs"
   command = "npm test && npm run check && npm run build"
   publish = "dist"
 [build.environment]
