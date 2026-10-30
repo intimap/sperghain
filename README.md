@@ -37,3 +37,5 @@ Once Netlify is connected, use `main` as production and feature branches for pre
 32 modules maximum; sine oscillator and output only. No MIDI, sequencer, filter, polyphony, drag placement, undo, autosave, external modules or native plugin yet. Reorder with arrows. The dial is a visual indicator controlled by its slider. Graph edits may click; parameter changes and master gain are smoothed. Graph compilation allocates on the worklet message handler, so large live edits are not yet guaranteed glitch-free.
 
 Architecture: [docs/architecture.md](docs/architecture.md). Contributor rules: [AGENTS.md](AGENTS.md).
+
+Review: [verification notes](docs/verification.md) and [rack screenshot](docs/foundation-preview.jpg).
