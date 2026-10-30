@@ -10,13 +10,14 @@
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
-.dual-osc-sliders .knob-control { margin-top: 0; gap: 5px; }
+.dual-osc-sliders .knob-control { margin-top: 0; gap: 4px; }
+.dual-osc-sliders .dial { width: 54px; height: 54px; border-width: 4px; }
 .dual-osc-sliders .knob-control input { width: 90%; }
 .dual-osc-sliders .control-value { font-size: 11px; }
 .dual-osc-hint {
-  margin-top: 14px;
+  margin-top: 5px;
   font-size: 8px;
   letter-spacing: 0.5px;
   color: #b0c5b5;
