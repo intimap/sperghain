@@ -38,7 +38,7 @@ Local `npm run dev` remains available for development, but the user does not nee
 
 ## Current boundaries
 
-32 modules maximum; oscillator, output, master clock and eight-step sequencer. No MIDI, filter, polyphony, drag placement, undo, autosave, external modules or native plugin yet. Reorder with arrows. The dial is a visual indicator controlled by its slider. Graph edits may click; parameter changes and master gain are smoothed. Graph compilation allocates on the worklet message handler, so large live edits are not yet guaranteed glitch-free.
+32 modules maximum; oscillator, DualOscSynth, output, master clock and eight-step sequencer. No MIDI, filter, polyphony, drag placement, undo, autosave, external modules or native plugin yet. Reorder with arrows. The dial is a visual indicator controlled by its slider. Graph edits may click; parameter changes and master gain are smoothed. Graph compilation allocates on the worklet message handler, so large live edits are not yet guaranteed glitch-free.
 
 Architecture: [docs/architecture.md](docs/architecture.md). Contributor rules: [AGENTS.md](AGENTS.md).
 
@@ -47,3 +47,7 @@ Review: [verification notes](docs/verification.md) and [rack screenshot](docs/fo
 ## Clock and sequencing
 
 See [clock/sequencer guide](docs/clock-sequencer.md) for wiring, timing conventions and limits. Load [the example patch](examples/clock-sequence.json), enable audio, then press Start on the clock.
+
+## Dual oscillator voice
+
+[DualOscSynth guide](docs/dual-osc-synth.md): two selectable oscillators and an amplitude ADSR, with gate and 1V/oct inputs. Load [the example patch](examples/dual-osc-sequence.json) for a clocked sequence.

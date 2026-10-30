@@ -1,0 +1,23 @@
+/* Scoped to this module; reuses the rack's pixel controls and panel styling. */
+.dual-osc-controls { margin-top: 15px; }
+.dual-osc-waveforms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.dual-osc-waveforms .compact-control span { text-transform: uppercase; letter-spacing: 1px; }
+.dual-osc-sliders {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+.dual-osc-sliders .knob-control { margin-top: 0; gap: 5px; }
+.dual-osc-sliders .knob-control input { width: 90%; }
+.dual-osc-sliders .control-value { font-size: 11px; }
+.dual-osc-hint {
+  margin-top: 14px;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  color: #b0c5b5;
+}
