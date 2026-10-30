@@ -15,10 +15,13 @@ export function parameterInput(spec, value, change) {
     input.step = spec.integer ? 1 : 0.05;
   }
   input.value = value;
-  input.addEventListener('change', () => {
-    if (!input.checkValidity() || input.value === '') { input.value = value; return; }
-    value = Number(input.value);
-    change(value);
-  });
+  const commit = () => {
+    if (!input.checkValidity() || input.value === '') return false;
+    const next = Number(input.value);
+    if (next !== value) { value = next; change(value); }
+    return true;
+  };
+  input.addEventListener('input', commit);
+  input.addEventListener('change', () => { if (!commit()) input.value = value; });
   label.append(input); return label;
 }
