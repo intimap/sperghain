@@ -29,7 +29,9 @@ Multiple oscillators may be instantiated. Patch one oscillator to another's 1V/O
 ## Branch and release workflow
 
 All implementation lives on feature branches until user approval. Do not merge or deploy production without approval.
-Netlify uses `main` for production and PR Deploy Previews for review. main currently contains only contributor rules until the first approved merge. Feature branches must not be used as the production branch. The previously published foundation remains live; new work stays in previews.
+`main` is the approved version for local use. Develop and test features on branches, then merge only after user approval. Run `npm run dev` and open http://localhost:5173 to experiment with main.
+
+Netlify automatic builds are stopped, including PR previews. Pushes and merges do not publish. Keep them stopped unless the user explicitly requests publication. Existing Netlify URLs show their last deployed versions; they do not track new work. An explicit release can be built locally with `npm run build` and deployed manually, or builds can be re-enabled with user approval.
 
 ## Current boundaries
 
