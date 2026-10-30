@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#151a19"><meta name="description" content="A pixel-art modular synthesizer. Build a rack. Patch a signal. Find your sound.">
+<title>Sperghain — Modular playground</title>
+<link rel="stylesheet" href="/src/ui/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="Sperghain home"><span class="brand-icon" aria-hidden="true">▥</span> SPERGHAIN<span class="version">MODULAR / 001</span></a>
+  <div class="audio-controls"><span id="audio-state" class="status">● AUDIO OFF</span><label class="master">MASTER <input id="master" type="range" min="0" max="0.8" step="0.01" value="0.25" aria-label="Master volume"></label><button id="mute" aria-pressed="false">Mute</button><button id="audio" class="primary">Enable audio ↗</button></div>
+</header>
+<main>
+  <section class="workspace-heading"><div><div class="eyebrow">YOUR SOUND STARTS HERE</div><h1>The patch is yours.</h1></div><div class="session"><span class="live-dot"></span> UNTITLED SESSION <span class="tag">LOCAL</span></div></section>
+  <section class="workbench" aria-label="Synthesizer workspace">
+    <div class="rack-toolbar"><div><span class="square"></span> RACK 01 <span id="count" class="muted">/ 00 MODULES</span></div><div class="toolbar-actions"><button id="save">↓ Save patch</button><button id="load">↑ Load patch</button><button id="add" class="primary">+ Add module</button></div></div>
+    <div id="rack-scroll"><div id="rack" aria-label="Module rack"><div class="rail top"></div><div class="rail bottom"></div><div id="modules"></div><svg id="cables" aria-label="Patch cables"></svg><div id="empty"><div class="pixel-rack" aria-hidden="true">▥</div><h2>Nothing here. Yet.</h2><p>An empty rack. Endless possibilities.<br>Add your first module and make a connection.</p><button id="empty-add" class="primary">+ Add your first module</button><span class="empty-foot">OSCILLATE · CONNECT · EXPLORE</span></div></div></div>
+    <div class="rack-footer"><span id="message" role="status">Ready when you are. Add an oscillator and an output to begin.</span><span id="cable-count">0 CONNECTIONS</span></div>
+  </section>
+  <section class="under-rack"><div><span class="step">01</span><h3>Build your instrument</h3><p>Choose a module. Give it a place.</p></div><div><span class="step">02</span><h3>Follow the signal</h3><p>Click an output, then an input to patch.</p></div><div><span class="step">03</span><h3>Find the unexpected</h3><p>Turn a dial. Hear what happens.</p></div><div class="signal-key"><span><i class="audio-key"></i> AUDIO</span><span><i class="cv-key"></i> CV</span><small>Click a cable to unplug it.</small></div></section>
+</main>
+<footer class="page-footer"><span>SPERGHAIN <span class="muted">/ A MODULAR PLAYGROUND</span></span><span>NO PRESETS. JUST POSSIBILITIES. <span class="mint">✳</span></span></footer>
+<dialog id="browser"><div class="dialog-heading"><div><div class="eyebrow">BUILD YOUR SIGNAL CHAIN</div><h2>Module library</h2></div><button id="close-browser" aria-label="Close module library">✕</button></div><p class="muted">Small building blocks. Your own instrument.</p><div id="module-list"></div><p class="library-note">FOUNDATION COLLECTION · 2 MODULES</p></dialog>
+<input id="patch-file" type="file" accept=".json,application/json" hidden>
+<script type="module" src="/src/app/main.js"></script>
+</body></html>
