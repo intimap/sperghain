@@ -28,10 +28,13 @@ Multiple oscillators may be instantiated. Patch one oscillator to another's 1V/O
 
 ## Branch and release workflow
 
-All implementation lives on feature branches until user approval. Do not merge or deploy production without approval.
-`main` is the approved version for local use. Develop and test features on branches, then merge only after user approval. Run `npm run dev` and open http://localhost:5173 to experiment with main.
+Develop and test features on branches. Open a pull request and share its Netlify Deploy Preview link so the user can test in their browser without local installation. Merge into `main` only after user approval.
 
-Netlify automatic builds are stopped, including PR previews. Pushes and merges do not publish. Keep them stopped unless the user explicitly requests publication. Existing Netlify URLs show their last deployed versions; they do not track new work. An explicit release can be built locally with `npm run build` and deployed manually, or builds can be re-enabled with user approval.
+Netlify builds are active for previews. The live production deploy is locked against automatic publishing. `scripts/netlify-ignore.mjs` also skips ordinary production-context builds while allowing `deploy-preview` and `branch-deploy` builds. Branch deploys remain disabled unless deliberately enabled; PR previews are the normal review path.
+
+Merging approved code into `main` does not publish it. Publish production only on an explicit user request; release manually from the approved build, or deliberately unlock/trigger a release and restore the publishing lock afterwards. Netlify build hooks can bypass ignore rules, so retain the production lock and do not add release hooks without authorization.
+
+Local `npm run dev` remains available for development, but the user does not need it for routine review. Existing preview links retain their last deployment after their PR is merged; a new feature gets a new PR preview link.
 
 ## Current boundaries
 
