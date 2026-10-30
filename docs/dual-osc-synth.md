@@ -37,3 +37,17 @@ Saw and square are naïve, not band-limited, and may alias at high pitches. `wav
 ## Automated verification
 
 Tests measure C3 and octave offsets at 44.1/48kHz, ADSR timing/holding/release, retrigger continuity, waveform differences, mix endpoints, parameter smoothing, block-boundary invariance, graph output, sequencer gates, JSON round trips, invalid values and existing rack safety limits. All existing tests are also run.
+
+## Manual browser verification
+
+Checked on the Netlify HTTPS preview:
+
+- Fresh launch remains an empty rack; DualOscSynth appears in the module browser.
+- Added DualOscSynth and Stereo output, connected AUDIO OUT to AUDIO IN and enabled the live AudioWorklet with GATE unpatched.
+- Changed both waveform selectors and all five sliders. Attack reached the 2-second UI endpoint and double-click returned it to 10ms. Browser-downloaded JSON was parsed to verify both enum values, mix and every ADSR value; loading the file restored those controls.
+- Loaded the clock/sequencer example, enabled audio and started the clock. The playhead advanced with gate/pitch connected to the voice. Unplugged and repatched sequencer GATE to the new GATE input using the existing cable/socket controls. No application-domain console errors or processor errors appeared.
+- Inspected the compact panel and corrected hint/socket spacing. Paused audio after review.
+
+This verifies live engine startup and interactions. Audio frequency/envelope shape is established by sample-output tests; no listening-based quality or hardware-latency assessment is claimed.
+
+![DualOscSynth and stereo output](dual-osc-synth-preview.jpg)
