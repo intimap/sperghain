@@ -35,3 +35,11 @@ Clock tempo is 30–300 BPM. Division sets the duration of **each step**: an eig
 Clock and sequencer each own definition, processor and panel files. `modules/registry.js` registers DSP; `modules/panels.js` separately registers custom UI. Generic parameter validation now supports integer/enum constraints. The engine supports declared default input voltages. GUI polling requests processor status at 20Hz only for LEDs/playheads; it never schedules music, and status messages are handled outside the render callback.
 
 MIDI clock, swing, triplets, ties, pattern banks, probability, ADSR envelopes and polyphonic sequencing are later features. No external device synchronisation is claimed.
+
+## Review evidence
+
+33 automated tests pass, including the original foundation tests. Syntax checks, the 500-line limit, static build and GitHub CI pass. The Netlify HTTPS preview was checked with the full example patch: AudioWorklet starts, beat/playhead indicators advance, Start/Stop works, and edited tempo/division/length/pitch/rest values were verified by parsing a browser-downloaded patch. No listening-based sound-quality or device latency assessment is claimed.
+
+Preview: https://deploy-preview-2--sperghain.netlify.app/
+
+![Clock, sequencer, oscillator and output](clock-sequencer-preview.jpg)
