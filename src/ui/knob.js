@@ -12,7 +12,9 @@ export function knob(spec, initial, change) {
   const paint = v => {
     input.value = Math.round(toPosition(v) * 1000);
     marker.style.transform = `rotate(${-135 + toPosition(v) * 270}deg)`;
-    value.textContent = `${spec.unit === 'Hz' ? Math.round(v) : Math.round(v * 100)} ${spec.unit || '%'}`;
+    value.textContent = spec.unit === 's'
+      ? (v < 1 ? `${Number((v * 1000).toFixed(1))} ms` : `${Number(v.toFixed(3))} s`)
+      : `${spec.unit === 'Hz' ? Math.round(v) : Math.round(v * 100)} ${spec.unit || '%'}`;
     input.setAttribute('aria-valuetext', value.textContent);
   };
   input.addEventListener('input', () => { const v = toValue(Number(input.value) / 1000); paint(v); change(v); });

@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "modules": [
+    {
+      "id": "clock",
+      "type": "clock",
+      "version": 1,
+      "parameters": {
+        "bpm": 120,
+        "running": 0,
+        "reset": 0
+      }
+    },
+    {
+      "id": "sequencer",
+      "type": "sequencer",
+      "version": 1,
+      "parameters": {
+        "division": 6,
+        "length": 8,
+        "gateWidth": 0.5,
+        "pitch0": 0,
+        "gate0": 1,
+        "pitch1": 3,
+        "gate1": 1,
+        "pitch2": 7,
+        "gate2": 1,
+        "pitch3": 10,
+        "gate3": 1,
+        "pitch4": 12,
+        "gate4": 1,
+        "pitch5": 10,
+        "gate5": 1,
+        "pitch6": 7,
+        "gate6": 1,
+        "pitch7": 3,
+        "gate7": 1
+      }
+    },
+    {
+      "id": "dual-voice",
+      "type": "dual-osc-synth",
+      "version": 1,
+      "parameters": {
+        "waveform1": 1,
+        "waveform2": 2,
+        "mix": 0.5,
+        "attack": 0.01,
+        "decay": 0.15,
+        "sustain": 0.7,
+        "release": 0.3
+      }
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "version": 1,
+      "parameters": {
+        "level": 0.5
+      }
+    }
+  ],
+  "cables": [
+    {
+      "id": "c0",
+      "from": {
+        "module": "clock",
+        "port": "clock"
+      },
+      "to": {
+        "module": "sequencer",
+        "port": "clock"
+      }
+    },
+    {
+      "id": "c1",
+      "from": {
+        "module": "clock",
+        "port": "run"
+      },
+      "to": {
+        "module": "sequencer",
+        "port": "run"
+      }
+    },
+    {
+      "id": "c2",
+      "from": {
+        "module": "clock",
+        "port": "reset"
+      },
+      "to": {
+        "module": "sequencer",
+        "port": "reset"
+      }
+    },
+    {
+      "id": "c3",
+      "from": {
+        "module": "sequencer",
+        "port": "pitch"
+      },
+      "to": {
+        "module": "dual-voice",
+        "port": "pitch"
+      }
+    },
+    {
+      "id": "c4",
+      "from": {
+        "module": "sequencer",
+        "port": "gate"
+      },
+      "to": {
+        "module": "dual-voice",
+        "port": "gate"
+      }
+    },
+    {
+      "id": "c5",
+      "from": {
+        "module": "dual-voice",
+        "port": "out"
+      },
+      "to": {
+        "module": "output",
+        "port": "in"
+      }
+    }
+  ]
+}
